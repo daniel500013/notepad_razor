@@ -9,10 +9,31 @@
 			<h2>Rejestracja</h2>
 		</div>
 	
-		<input type="text" class="form-control mt-3 mb-3" placeholder="Login"/>
-		<input type="password" class="form-control mt-3 mb-3" placeholder="Hasło"/>
-		<input type="password" class="form-control mt-3 mb-3" placeholder="Hasło (powtórne)"/>
-		<input type="password" class="form-control mt-3 mb-3" placeholder="Email"/>
+		<div class="mt-3 mb-3">
+			<input type="text" class="form-control" placeholder="Login" asp-for="UserModel.NickName"/>
+			<span asp-validation-for="UserModel.NickName" class="text-danger"></span>
+		</div>
+		
+		<div class="mt-3 mb-3">
+			<input type="password" class="form-control" placeholder="Hasło" asp-for="UserModel.Password" />
+		<span asp-validation-for="UserModel.Password" class="text-danger"></span>
+		</div>
+
+		<div class="mt-3 mb-3">
+			<input type="password" class="form-control" placeholder="Hasło (powtórne)" asp-for="UserModel.Password" />
+			<span asp-validation-for="UserModel.Password" class="text-danger"></span>
+		</div>
+		
+		<div class="mt-3 mvbb-3">
+			<input type="text" class="form-control" placeholder="Email" asp-for="UserModel.Email" />
+			<span asp-validation-for="UserModel.Email" class="text-danger"></span>
+		</div>
+
+		<div class="mt-3 mb-3">
+			<input type="number" class="form-control" placeholder="Klasa" asp-for="UserModel.UserClass" />
+			<span asp-validation-for="UserModel.UserClass" class="text-danger"></span>
+		</div>
+		
 		<input type="submit" class="d-block btn btn-primary w-100" value="Utwórz konto"/>
 	</form>
 </div>

@@ -1,7 +1,22 @@
+
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<NotepadDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("ConnectionStrings")));
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.ExpireTimeSpan = TimeSpan.FromHours(2);
+        options.SlidingExpiration = true;
+        options.AccessDeniedPath = "/Subjects/";
+    });
+
+builder.Services.AddScoped<IPasswordHasher<UserModel>, PasswordHasher<UserModel>>();
 
 var app = builder.Build();
 
@@ -16,10 +31,12 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
-app.UseRouting();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapRazorPages();
+app.MapDefaultControllerRoute();
+
+app.UseRouting();
 
 app.Run();
