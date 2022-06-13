@@ -1,0 +1,18 @@
+﻿@page
+@model notepad_razor.Pages.Auth.RegisterModel
+@{
+}
+
+<div class="position-absolute top-50 start-50 text-center p-5 border shadow" style="transform: translateY(-75%) translateX(-50%)">
+	<form method="post">
+		<div class="mb-4">
+			<h2>Rejestracja</h2>
+		</div>
+	
+		<input type="text" class="form-control mt-3 mb-3" placeholder="Login"/>
+		<input type="password" class="form-control mt-3 mb-3" placeholder="Hasło"/>
+		<input type="password" class="form-control mt-3 mb-3" placeholder="Hasło (powtórne)"/>
+		<input type="password" class="form-control mt-3 mb-3" placeholder="Email"/>
+		<input type="submit" class="d-block btn btn-primary w-100" value="Utwórz konto"/>
+	</form>
+</div>
