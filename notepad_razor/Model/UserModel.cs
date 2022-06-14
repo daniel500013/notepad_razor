@@ -11,6 +11,8 @@
         [Required]
         [Display(Name = "password")]
         public string Password { get; set; }
+        [Display(Name = "HashedPassword")]
+        public string HashedPassword { get; set; } = string.Empty;
         [Required]
         [Display(Name = "email")]
         public string Email { get; set; }

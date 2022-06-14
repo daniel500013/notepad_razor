@@ -1,6 +1,7 @@
 ﻿@page
 @model notepad_razor.Pages.Auth.LoginModel
 @{
+	ViewData["Title"] = "Logowanie";
 }
 
 <div class="position-absolute top-50 start-50 text-center p-5 border shadow" style="transform: translateY(-75%) translateX(-50%)">
@@ -9,8 +10,8 @@
 			<h2>Logowanie</h2>
 		</div>
 	
-		<input type="text" class="form-control mt-3 mb-3" placeholder="Login"/>
-		<input type="password" class="form-control mt-3 mb-3" placeholder="Hasło"/>
-		<input type="submit" class="d-block btn btn-primary w-100" value="Logowanie"/>
+		<input type="text" class="form-control mt-3 mb-3" placeholder="Login" asp-for="UserModel.NickName" />
+		<input type="password" class="form-control mt-3 mb-3" placeholder="Hasło" asp-for="UserModel.Password" />
+		<input type="submit" class="d-block btn btn-primary w-100" value="Logowanie" />
 	</form>
 </div>
