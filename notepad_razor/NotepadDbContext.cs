@@ -3,6 +3,7 @@
     public class NotepadDbContext : DbContext
     {
         public DbSet<UserModel> Users { get; set; }
+        public DbSet<PostModel> Posts { get; set; }
         public DbSet<SubjectModel> Subjects { get; set; }
 
         public NotepadDbContext(DbContextOptions<NotepadDbContext> options) : base(options)
@@ -16,13 +17,20 @@
                 .Property(p => p.Email)
                 .IsRequired();
 
-            modelBuilder.Entity<SubjectModel>()
+            modelBuilder.Entity<UserModel>()
+                .Property(p => p.NickName)
+                .IsRequired();
+
+            modelBuilder.Entity<PostModel>()
+                .Property(s => s.Title)
+                .IsRequired();
+
+            modelBuilder.Entity<PostModel>()
                 .Property(p => p.Subject)
                 .IsRequired();
 
-
             modelBuilder.Entity<SubjectModel>()
-                .Property(s => s.Subject)
+                .Property(p => p.Users)
                 .IsRequired();
         }
     }
