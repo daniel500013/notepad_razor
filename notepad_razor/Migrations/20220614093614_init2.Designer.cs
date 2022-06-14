@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using notepad_razor;
 
@@ -10,9 +11,10 @@ using notepad_razor;
 namespace notepad_razor.Migrations
 {
     [DbContext(typeof(NotepadDbContext))]
-    partial class NotepadDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220614093614_init2")]
+    partial class init2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -52,7 +52,7 @@ namespace notepad_razor.Pages.Auth
                     new ClaimsPrincipal(claimsIdentity),
                     authProperties);
 
-                UserModel.Password = passwordhasher.HashPassword(UserModel, UserModel.Password);
+                UserModel.HashedPassword = passwordhasher.HashPassword(UserModel, UserModel.Password);
 
                 context.Add(UserModel);
                 await context.SaveChangesAsync();
