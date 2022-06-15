@@ -17,7 +17,8 @@
         [Display(Name = "email")]
         public string Email { get; set; }
         [Display(Name = "user_class")]
-        public string UserClass { get; set; }
+        [Range(1, 4)]
+        public int UserClass { get; set; }
         [Display(Name = "permissions")]
         public string Permission { get; set; } = "User";
     }

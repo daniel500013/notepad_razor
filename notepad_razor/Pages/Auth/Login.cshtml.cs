@@ -38,10 +38,11 @@ namespace notepad_razor.Pages.Auth
             {
                 var claims = new List<Claim>
                 {
-                    new Claim("ID", user.Id.ToString()),
+                    new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                     new Claim(ClaimTypes.Name, user.NickName),
                     new Claim(ClaimTypes.Email, user.Email),
                     new Claim(ClaimTypes.Role, user.Permission),
+                    new Claim("Class", user.UserClass.ToString()),
                 };
 
                 var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
@@ -61,6 +62,7 @@ namespace notepad_razor.Pages.Auth
             }
             else
             {
+                ModelState.AddModelError("LoginError", "Invalid login or password");
                 return Page();
             }
         }
