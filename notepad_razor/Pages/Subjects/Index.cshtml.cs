@@ -14,9 +14,8 @@ namespace notepad_razor.Pages.Subjects
 
         public IList<SubjectModel> schoolSubjects;
 
-        public void OnGet()
+        public void OnGet(int id)
         {
-            int id = int.Parse(User.FindFirst("ID").Value);
             schoolSubjects = context.Subjects.Where(x => x.UserID.Equals(id)).ToList();
         }
     }

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using notepad_razor;
 
@@ -11,9 +12,10 @@ using notepad_razor;
 namespace notepad_razor.Migrations
 {
     [DbContext(typeof(NotepadDbContext))]
-    partial class NotepadDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220615152737_db-update-1")]
+    partial class dbupdate1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -41,9 +43,6 @@ namespace notepad_razor.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UserClass")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.ToTable("Post");
@@ -62,10 +61,14 @@ namespace notepad_razor.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("UserID")
-                        .IsRequired()
+                        .HasColumnType("int");
+
+                    b.Property<int?>("UserModelId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("UserModelId");
 
                     b.ToTable("Subjects");
                 });
@@ -98,34 +101,22 @@ namespace notepad_razor.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UserClass")
-                        .HasColumnType("int");
+                    b.Property<string>("UserClass")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+                });
 
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Email = "user@user.com",
-                            HashedPassword = "AQAAAAEAACcQAAAAEIPml6EhNHdTF/UFC00wwnH+Do5mwU1UCpl1Y9EERknTH8LE1a5gg7DVk7yj+LQt5g==",
-                            NickName = "user",
-                            Password = "user",
-                            Permission = "User",
-                            UserClass = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Email = "admin@admin.com",
-                            HashedPassword = "AQAAAAEAACcQAAAAEENAYcFrj25u9tzx+88HZpIpOBXVKV/LZb0clSVOE1fXy2hA++svzwO3jnjb3Wstxw==",
-                            NickName = "admin",
-                            Password = "admin",
-                            Permission = "Admin",
-                            UserClass = 1
-                        });
+            modelBuilder.Entity("notepad_razor.Model.SubjectModel", b =>
+                {
+                    b.HasOne("notepad_razor.Model.UserModel", "UserModel")
+                        .WithMany()
+                        .HasForeignKey("UserModelId");
+
+                    b.Navigation("UserModel");
                 });
 #pragma warning restore 612, 618
         }

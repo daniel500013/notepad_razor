@@ -26,18 +26,36 @@ namespace notepad_razor.Pages.Auth
         {
             if (ModelState.IsValid)
             {
+                var emailExist = await context.Users.FirstOrDefaultAsync(x => x.Email == UserModel.Email);
+                var userExist = await context.Users.FirstOrDefaultAsync(x => x.NickName == UserModel.NickName);
+                
                 if (UserModel == null)
                 {
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    ModelState.AddModelError("RegisterError", "Invalid login attempt");
                     return Page();
                 }
 
+                if (emailExist != null)
+				{
+                    ModelState.AddModelError("RegisterError", "Invalid email");
+                    return Page();
+                }
+
+                if (userExist != null)
+                {
+                    ModelState.AddModelError("RegisterError", "Invalid username");
+                    return Page();
+                }
+
+                var NameIdentifier = (context.Users.ToList().Count + 1).ToString();
+
                 var claims = new List<Claim>
                 {
-                    new Claim("ID", UserModel.Id.ToString()),
+                    new Claim(ClaimTypes.NameIdentifier, NameIdentifier),
                     new Claim(ClaimTypes.Name, UserModel.NickName),
                     new Claim(ClaimTypes.Email, UserModel.Email),
                     new Claim(ClaimTypes.Role, UserModel.Permission),
+                    new Claim("Class", UserModel.UserClass.ToString()),
                 };
 
                 var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
@@ -56,14 +74,9 @@ namespace notepad_razor.Pages.Auth
                 UserModel.HashedPassword = passwordhasher.HashPassword(UserModel, UserModel.Password);
 
                 context.Add(UserModel);
-
-                context.Add(new SubjectModel { Subject = "Polski", UserID = UserModel.Id });
-                context.Add(new SubjectModel { Subject = "Matematyka", UserID = UserModel.Id });
-                context.Add(new SubjectModel { Subject = "Angielski", UserID = UserModel.Id });
-
                 await context.SaveChangesAsync();
 
-                return LocalRedirect("/");
+                return RedirectToPage("/Auth/RegisterComplete", UserModel);
             }
             else
             {

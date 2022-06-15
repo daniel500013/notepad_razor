@@ -7,18 +7,20 @@
 	<form method="post">
 		<input class="form-control d-block mt-3 mb-3" type="text" placeholder="Temat" asp-for="Post.Title"/>
 
-		<textarea id="editor" asp-for="Post.Description"></textarea>
+		<textarea id="summernote" asp-for="Post.Description"></textarea>
+		<input type="hidden" value='@User.FindFirst("Class")?.Value' asp-for="Post.UserClass"/>
 
 		<input type="submit" class="btn btn-primary mt-3 mb-3" value="Dodaj" />
 	</form>
 
 </div>
 
-<script src="https://cdn.ckeditor.com/ckeditor5/34.1.0/classic/ckeditor.js"></script>
-<script>
-    ClassicEditor
-        .create( document.querySelector( '#editor' ) )
-        .catch( error => {
-            console.error( error );
-        } );
-</script>
+@section Scripts {
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#summernote').summernote();
+        });
+    </script>
+}

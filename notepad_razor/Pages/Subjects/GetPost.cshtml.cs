@@ -21,7 +21,10 @@ namespace notepad_razor.Pages.Subjects
         {
             Subject = subject;
 
-            posts = await context.Posts.Where(p => p.Subject.Equals(subject)).ToListAsync();
+            posts = await context.Posts
+                .Where(p => p.Subject.Equals(subject))
+                .Where(x => x.UserClass == int.Parse(User.FindFirst("Class").Value))
+                .ToListAsync();
         }
     }
 }
