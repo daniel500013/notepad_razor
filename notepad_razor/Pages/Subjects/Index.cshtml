@@ -1,0 +1,14 @@
+﻿@page
+@model notepad_razor.Pages.Subjects.IndexModel
+@{
+	ViewData["Title"] = "Lekcje";
+}
+
+@foreach (var item in @Model.schoolSubjects)
+{
+	<div class="row text-center">
+		<div class="col">
+			<a class="btn btn-primary w-100 m-2" asp-page="/Subjects/GetPost" asp-route-subject="@item.Subject">@item.Subject</a>
+		</div>
+	</div>
+}

@@ -34,6 +34,7 @@ namespace notepad_razor.Pages.Auth
 
                 var claims = new List<Claim>
                 {
+                    new Claim("ID", UserModel.Id.ToString()),
                     new Claim(ClaimTypes.Name, UserModel.NickName),
                     new Claim(ClaimTypes.Email, UserModel.Email),
                     new Claim(ClaimTypes.Role, UserModel.Permission),
@@ -55,6 +56,11 @@ namespace notepad_razor.Pages.Auth
                 UserModel.HashedPassword = passwordhasher.HashPassword(UserModel, UserModel.Password);
 
                 context.Add(UserModel);
+
+                context.Add(new SubjectModel { Subject = "Polski", UserID = UserModel.Id });
+                context.Add(new SubjectModel { Subject = "Matematyka", UserID = UserModel.Id });
+                context.Add(new SubjectModel { Subject = "Angielski", UserID = UserModel.Id });
+
                 await context.SaveChangesAsync();
 
                 return LocalRedirect("/");
