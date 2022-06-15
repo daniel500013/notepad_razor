@@ -22,16 +22,10 @@
                 .IsRequired();
 
             modelBuilder.Entity<PostModel>()
-                .Property(s => s.Title)
-                .IsRequired();
-
-            modelBuilder.Entity<PostModel>()
                 .Property(p => p.Subject)
-                .IsRequired();
+                .IsRequired(false);
 
-            modelBuilder.Entity<SubjectModel>()
-                .Property(p => p.Users)
-                .IsRequired();
+            modelBuilder.Entity<SubjectModel>();
         }
     }
 }

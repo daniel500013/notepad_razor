@@ -1,0 +1,30 @@
+﻿@page
+@model notepad_razor.Pages.Subjects.GetPostModel
+@{
+	ViewData["Title"] = $"Lekcje [{Model.Subject}]";
+}
+
+<h1>@Model.Subject</h1>
+
+<div class="mt-4 mb-2">
+	<a class="btn btn-primary" asp-page="CreatePost" asp-route-subject="@Model.Subject">Dodaj</a>
+</div>
+
+<div>
+	@for (int i = 0; i < @Model.posts.Count; i++)
+	{
+		<div>
+			<div class="mt-4">
+				<h3>@Model.posts[i].Title</h3>
+			</div>
+			<div class="border-bottom w-100"></div>
+			<div class="mt-2">
+				@Html.Raw(@Model.posts[i].Description)
+			</div>
+			<div>
+				<a type="submit" class="btn btn-success" asp-page="/Subjects/EditPost" asp-route-id="@Model.posts[i].Id">Edytuj</a>
+				<a type="submit" class="btn btn-danger" asp-page="/Subjects/DeletePost" asp-route-id="@Model.posts[i].Id">Usuń</a>
+			</div>
+		</div>
+	}
+</div>

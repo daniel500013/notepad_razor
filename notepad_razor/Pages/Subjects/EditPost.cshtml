@@ -1,0 +1,24 @@
+﻿@page
+@model notepad_razor.Pages.Subjects.EditPostModel
+@{
+}
+
+<div>
+	<form method="post">
+		<input class="form-control d-block mt-3 mb-3" type="text" placeholder="Temat" asp-for="Post.Title" value="@Model.Post.Title"/>
+
+		<textarea id="editor" asp-for="Post.Description" value="@Model.Post.Description"></textarea>
+
+		<input type="submit" class="btn btn-primary mt-3 mb-3" value="Zaktualizuj" />
+	</form>
+	<a class="btn btn-primary" asp-page="/Subjects/GetPost" asp-route-subject="@Model.Post.Subject">Wróć</a>
+</div>
+
+<script src="https://cdn.ckeditor.com/ckeditor5/34.1.0/classic/ckeditor.js"></script>
+<script>
+    ClassicEditor
+        .create( document.querySelector( '#editor' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+</script>

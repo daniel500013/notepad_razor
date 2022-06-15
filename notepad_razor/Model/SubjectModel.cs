@@ -5,8 +5,9 @@
         [Key]
         public int Id { get; set; }
         [Required]
-        public string Subject { get; set; }
-        public int UserId { get; set; }
-        public virtual UserModel? Users { get; set; }
+        public string? Subject { get; set; }
+
+        public int? UserID { get; set; } 
+        public virtual UserModel? UserModel { get; set; }
     }
 }
