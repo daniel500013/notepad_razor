@@ -52,6 +52,46 @@
                     UserClass = 1
                 }
                 );
+
+            modelBuilder.Entity<SubjectModel>()
+                .HasData(
+                new SubjectModel()
+                {
+                    Id = 1,
+                    Subject = "Polski",
+                    UserID = 1
+                },
+                new SubjectModel()
+                {
+                    Id = 2,
+                    Subject = "Matematyka",
+                    UserID = 1
+                },
+                new SubjectModel()
+                {
+                    Id = 3,
+                    Subject = "Angielski",
+                    UserID = 1
+                },
+                new SubjectModel()
+                {
+                    Id = 4,
+                    Subject = "Polski",
+                    UserID = 2
+                },
+                new SubjectModel()
+                {
+                    Id = 5,
+                    Subject = "Matematyka",
+                    UserID = 2
+                },
+                new SubjectModel()
+                {
+                    Id = 6,
+                    Subject = "Angielski",
+                    UserID = 2
+                }
+                );
         }
     }
 }
