@@ -5,16 +5,9 @@ namespace notepad_razor.Pages.Auth
 {
     public class LogoutModel : PageModel
     {
-        private readonly NotepadDbContext context;
-
-        public LogoutModel(NotepadDbContext _context)
+        public async Task<IActionResult> OnGet()
         {
-            context = _context;
-        }
-
-        public IActionResult OnGet()
-        {
-            HttpContext.SignOutAsync();
+            await HttpContext.SignOutAsync();
             return LocalRedirect("/");
         }
     }
