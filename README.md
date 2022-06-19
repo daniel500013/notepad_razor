@@ -1,7 +1,7 @@
 ![](/git/image.png)
 
 # Notepad
-Prosty projekt jeszcze za czasów szkolnych który służył do zapisywania notatek podczas lekcij zdalnych
+Prosty projekt jeszcze za czasów szkolnych, który służył do zapisywania notatek podczas lekcji zdalnych
 
 # Wymagania
 `` SQL Server >2016``
@@ -15,6 +15,6 @@ Prosty projekt jeszcze za czasów szkolnych który służył do zapisywania nota
 
 # Baza danych
 ### Konfiguracja
-Aby nie wystąpił błąd przy połączeniu z bazą danych należy podmienić dane potrzebne do połączenia w pliku ``appsettings.json`` przy linij ``9``
+Aby nie wystąpił błąd przy połączeniu z bazą danych należy podmienić dane potrzebne do połączenia w pliku ``appsettings.json`` przy linii ``9``
 #### Przykład
 > PM> update-database
