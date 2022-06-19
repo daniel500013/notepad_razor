@@ -5,13 +5,16 @@ Prosty projekt jeszcze za czasów szkolnych który służył do zapisywania nota
 
 # Wymagania
 `` SQL Server >2016``
+<br />
 ``.NET Core 6``
 
 # Domyślne dane logowania
 `` Login: user``
+<br />
 `` Hasło: user``
 
 # Baza danych
-Aby dodać baze z migracij użyj polecenia update-database w menadżerze pakietów
+### Konfiguracja
+Aby nie wystąpił błąd przy połączeniu z bazą danych należy podmienić dane potrzebne do połączenia w pliku ``appsettings.json`` przy linij ``9``
 #### Przykład
 > PM> update-database
